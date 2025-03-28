@@ -13,14 +13,16 @@ import java.util.Scanner;
 public class Fatorial {
 	
 	public static void main (String [] args) {
+		Scanner ler = new Scanner(System.in);
 		int num, i, fat;
 		
-		Scanner in = new Scanner(System.in);
 		
 		System.out.print("Digite um número para fazer o fatorial: ");
-		num = in.nextInt();
+		num = ler.nextInt();
 		
 		fat = num;
+		
+		ler.close();
 		
 		for(i=num-1; i>0; i--) {
 			fat = fat * i; 
@@ -28,7 +30,7 @@ public class Fatorial {
 	
 		System.out.println("O fatorial de " + num + " é " + fat);
 		
-		in.close();
+		
 	}
 
 	

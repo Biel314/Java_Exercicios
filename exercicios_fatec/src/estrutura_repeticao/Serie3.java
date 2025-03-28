@@ -15,7 +15,7 @@ public class Serie3{
 	public static void main(String args[]){
 		double n, r=1, i, x = 1, j = 1;
 		
-		n = Double.parseDouble(JOptionPane.showInputDialog("Insira o Valor"));
+		n = Double.parseDouble(JOptionPane.showInputDialog("Digite um valor: "));
 		
 		if(n!=1) {
 			for(i=1;i<n;i++){
@@ -31,6 +31,6 @@ public class Serie3{
 			 r=1;
 		}
 		
-		JOptionPane.showMessageDialog(null, r);
+		JOptionPane.showMessageDialog(null, "O resultado da serie é: " + r);
 	}
 }
