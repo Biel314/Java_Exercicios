@@ -30,7 +30,7 @@ public class GraosTabuleiro {
 		}
 	}
 
-	public static int fPotencia(Integer base, Integer expoente) {
+	public static int fPotencia(int base, int expoente) {
 		int r;
 		
 		r = 1;
