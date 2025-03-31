@@ -1,72 +1,73 @@
 /*
 	Nome do programa: BubbleSort
-	Objetivo: Criar e coletar um vetor [100] inteiro e exibir: 
-	a. O maior e o menor valor; 
-	b. A média dos valores. 
+	Objetivo: Criar e coletar em um vetor [20] com números aleatórios. Classificar este 
+	vetor em ordem crescente e mostre os dados. 
 	Nome do Programador: Gabriel Ordonho
-	Data de desenvolvimento: 29/03/2025
-	Exercicio 47
+	Data de desenvolvimento: 30/03/2025
+	Exercicio 51
 */
 
 package estrutura_vetor_matriz;
 
 import javax.swing.JOptionPane;
+import java.util.Arrays;
 
 public class BubbleSort {
-	
+
 	public static void main (String [] args) {
-			int[] v = new int[100];
+		int opc;
+		int[] v = {12, 99, 10, 63, 12, 63, 1, 155, 21, 33, 6, 23, 87, 84, 15, 15, 201, 521, 95, 49};
+		int[] crescente = new int[20];
 		
-			v = fCarregarVetor(v);
+		do {
+			opc = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada: "));
 			
-			pBubbleSort(v);
+			/* Treinamento */
+
+			switch(opc) {
+			case 1:
+				crescente = fClassificaCrescente(v);
+				break;
+			case 2:
+				pMostra(crescente);
+				break;
+			case 9:
+				JOptionPane.showMessageDialog(null, "Fim do programa");
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Opção Invalida!");
+				break;
+			} 
 			
-			pMediaVetor(v);
-			
+		} while(opc != 9);
+		
 	}
 	
-	public static int[] fCarregarVetor (int[] v) {
+	/* Função que ordena um vetor em ordem crescente */
+
+	public static int[] fClassificaCrescente (int[] v) {
+		int i, j, aux, tam;
 		
-		int i;
+		tam = Integer.parseInt(JOptionPane.showInputDialog("Digite quantas casas tem o vetor: "));
 		
-		for (i=0; i<100; i++) {
-			v[i] = Integer.parseInt(JOptionPane.showInputDialog("Digite o " + (i+1) +"o valor do vetor: "));
+		for (i=0; i<tam; i++) {
+			for (j=i+1; j<tam; j++) {
+				if (v[i]>v[j]) {
+					aux = v[j];
+					v[j] = v[i];
+					v[i] = aux;
+				}
+			}
 		}
 		
 		return v;
 	}
 	
-	public static void pBubbleSort(int[] v) {
-		int i, j, aux;
-		
-		for (i=0; i<100; i++) {
-			for (j=i+1; j<100; j++) {
-				if (v[i] > v[j]) {
-					aux = v[i];
-					v[i] = v[j];
-					v[j] = aux;
-				} 
-			}
-		}
-		
-		System.out.println("O menor valor do vetor é: " + v[0]);
-		System.out.println("O maior valor do vetor é: " + v[99]);
+	/* Procedure especialmente criada para treino */
+
+	public static void pMostra(int[] crescente) {
+		JOptionPane.showMessageDialog(null, "O vetor após a ordenação!");
+		JOptionPane.showMessageDialog(null, Arrays.toString(crescente));
 	}
-	
-	public static void pMediaVetor(int[] v) {
-		int i, soma=0;
-		double media;
-		
-		for (i=0; i<100; i++) {
-			soma = soma + v[i];
-		}
-		
-		media = soma/100f;
-		System.out.println(soma);
-		System.out.println("A media de todos os valores do vetor é: " + media);
-		
-	}
-	
-	
 	
 }
