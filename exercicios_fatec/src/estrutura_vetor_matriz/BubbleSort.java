@@ -15,9 +15,9 @@ import java.util.Arrays;
 public class BubbleSort {
 
 	public static void main (String [] args) {
-		int opc;
-		int[] v = {12, 99, 10, 63, 12, 63, 1, 155, 21, 33, 6, 23, 87, 84, 15, 15, 201, 521, 95, 49};
-		int[] crescente = new int[20];
+		int opc, r=0;
+		int[] arr = {12, 99, 10, 63, 12, 63, 1, 155, 21, 33, 6, 23, 87, 84, 15, 15, 201, 521, 95, 49};
+		int[] ord = new int[20];
 		
 		do {
 			opc = Integer.parseInt(JOptionPane.showInputDialog("Digite a opção desejada: "));
@@ -26,10 +26,16 @@ public class BubbleSort {
 
 			switch(opc) {
 			case 1:
-				crescente = fClassificaCrescente(v);
+				ord = fClassificaCrescente(arr);
 				break;
 			case 2:
-				pMostra(crescente);
+				pOrdenacao(ord);
+				break;
+			case 3:
+				r = fPesquisaBinaria(ord);
+				break;
+			case 4:
+				pResultado(ord, r);
 				break;
 			case 9:
 				JOptionPane.showMessageDialog(null, "Fim do programa");
@@ -42,32 +48,64 @@ public class BubbleSort {
 		} while(opc != 9);
 		
 	}
-	
-	/* Função que ordena um vetor em ordem crescente */
 
-	public static int[] fClassificaCrescente (int[] v) {
-		int i, j, aux, tam;
-		
-		tam = Integer.parseInt(JOptionPane.showInputDialog("Digite quantas casas tem o vetor: "));
-		
-		for (i=0; i<tam; i++) {
-			for (j=i+1; j<tam; j++) {
-				if (v[i]>v[j]) {
-					aux = v[j];
-					v[j] = v[i];
-					v[i] = aux;
+	public static int[] fClassificaCrescente (int[] arr) {
+		int i, j, aux;
+
+		for (i=0; i<20; i++) {
+			for (j=i+1; j<20; j++) {
+				if (arr[i]>arr[j]) {
+					aux = arr[j];
+					arr[j] = arr[i];
+					arr[i] = aux;
 				}
 			}
 		}
 		
-		return v;
+		return arr;
+	}
+
+	public static void pOrdenacao(int[] arr) {
+		JOptionPane.showMessageDialog(null, Arrays.toString(arr));
 	}
 	
-	/* Procedure especialmente criada para treino */
-
-	public static void pMostra(int[] crescente) {
-		JOptionPane.showMessageDialog(null, "O vetor após a ordenação!");
-		JOptionPane.showMessageDialog(null, Arrays.toString(crescente));
+	public static int fPesquisaBinaria(int[] v) {
+		int m, esq=0, dir=19, num;
+		
+		num = Integer.parseInt(JOptionPane.showInputDialog("Digite o número a ser buscado: "));
+		
+		 while (esq <= dir) {
+	            m = esq + (dir - esq) / 2;
+	            
+	            if (v[m] == num) {
+	                return m;
+	            }
+	            
+	            if (v[m] < num) {
+	                esq = m + 1;
+	            } else {
+	                dir = m - 1; 
+	            }
+	        }
+	        
+	        return -1;
+		
 	}
+	
+	
+	public static void pResultado(int[] arr ,int r) {
+		
+		if (r != -1) {
+			JOptionPane.showMessageDialog(null, "O valor procurado é: " + r);
+			
+		} else {
+			JOptionPane.showMessageDialog(null, "Não existe este valor dentro do vetor");
+			
+		}
+			
+		
+		
+	}
+	
 	
 }
